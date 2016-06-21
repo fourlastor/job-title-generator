@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Job Title Generator</title>
+    <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+    <style media="screen">
+      html {
+        height: 100%;
+      }
+      body {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #eee;
+        background-color: #000;
+        font-size: 90px;
+        font-family: 'VT323', monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="job-title" />
+
+    <script type="text/javascript">
+      var title = document.querySelector('#job-title');
+
+      var selfCompliments = [
+        'Expert',
+        'Gran Master',
+        'Master',
+        'Senior',
+        'Ninja',
+        'Masher',
+        'Guardian',
+        'Artisan',
+        'Keeper'
+      ]
+
+      var topics = [
+        'PHP',
+        'Whisky', // hi mark
+        'Java',
+        'Android',
+        'Keyboard',
+        'Computers',
+        'iOS',
+        'Ruby on Rails',
+        'SCRUM',
+        '$putHypeWordHere',
+        'Node.js',
+        'Swift',
+        'Kotlin'
+      ]
+
+      if (Math.random() > 0.5) {
+        title.innerText = randomWord(selfCompliments) + " of " + randomWord(topics);
+      } else {
+        title.innerText = randomWord(topics) + " " + randomWord(selfCompliments);
+      }
+
+      function randomWord(words) {
+        var randomIndex = Math.floor(Math.random()*words.length); // from SO, so don't complain if it goes in SO :trollface:
+        return words[randomIndex];
+      }
+    </script>
+  </body>
+</html>
