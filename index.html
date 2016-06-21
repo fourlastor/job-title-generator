@@ -9,19 +9,36 @@
         height: 100%;
       }
       body {
+        box-sizing: border-box;
         min-height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #eee;
         background-color: #000;
-        font-size: 90px;
         font-family: 'VT323', monospace;
+        padding: 20px;
+        margin: 0;
+      }
+
+      .job-title {
+        font-size: 90px;
+      }
+
+      .badge {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        color: #fff;
       }
     </style>
   </head>
   <body>
-    <div id="job-title" />
+    <a href="https://github.com/fourlastor/job-title-generator" class="badge">
+      Made with &hearts; by fourlastor
+    </a>
+    <div id="job-title" class="job-title" />
+
 
     <script type="text/javascript">
       var title = document.querySelector('#job-title');
