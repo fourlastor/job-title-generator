@@ -33,110 +33,129 @@
         color: #fff;
         font-size: 20px;
       }
+
+      .red {
+        color: #d44;
+      }
     </style>
   </head>
   <body>
     <a href="https://github.com/fourlastor/job-title-generator" class="badge">
-      Made with &hearts; by fourlastor
+      Made with <span class="red">&hearts;</span> by fourlastor and <span id="contributors-count">some</span> awesome people.
     </a>
     <div id="job-title" class="job-title" />
 
 
     <script type="text/javascript">
-      var title = document.querySelector('#job-title');
+      (function (document) {
+        var title = document.querySelector('#job-title');
 
-      var skillLevels = [
-        'Junior',
-        'Señor',
-        'Exhausted',
-        'Uber-Experienced',
-        'Top',
-        'Superior',
-        'Confident'
-      ]
+        var skillLevels = [
+          'Junior',
+          'Señor',
+          'Exhausted',
+          'Uber-Experienced',
+          'Top',
+          'Superior',
+          'Confident'
+        ]
 
-      var selfCompliments = [
-        'Expert',
-        'Grand Master',
-        'Master',
-        'Senior',
-        'Ninja',
-        'Masher',
-        'Guardian',
-        'Craftsman',
-        'Brewer',
-        'Lead',
-        'Principal',
-        'BDFL',
-        'Magician',
-        'Engineer',
-        'Coder',
-        'Craftswoman',
-        'Sculptor',
-        'Tech Manager',
-        'Jedi',
-        'Guru',
-        'Hacker',
-        'Craftsperson',
-        'Champion',
-        'Evangelist',
-        'Advocate',
-        'Pusher',
-        'Sherpa',
-        'Leader',
-        'Captain',
-        'Artist',
-        'Director',
-        'Artisan',
-        'Keeper',
-        'Evangelist',
-        'Virtuoso',
-        'Mentor'
-      ]
+        var selfCompliments = [
+          'Expert',
+          'Grand Master',
+          'Master',
+          'Senior',
+          'Ninja',
+          'Masher',
+          'Guardian',
+          'Craftsman',
+          'Brewer',
+          'Lead',
+          'Principal',
+          'BDFL',
+          'Magician',
+          'Engineer',
+          'Coder',
+          'Craftswoman',
+          'Sculptor',
+          'Tech Manager',
+          'Jedi',
+          'Guru',
+          'Hacker',
+          'Craftsperson',
+          'Champion',
+          'Evangelist',
+          'Advocate',
+          'Pusher',
+          'Sherpa',
+          'Leader',
+          'Captain',
+          'Artist',
+          'Director',
+          'Artisan',
+          'Keeper',
+          'Evangelist',
+          'Virtuoso',
+          'Mentor'
+        ]
 
-      var topics = [
-        'PHP',
-        'Whisky', // hi mark
-        'Java',
-        'Android',
-        'Keyboard',
-        'Computers',
-        'iOS',
-        'Ruby on Rails',
-        'SCRUM',
-        '$putHypeWordHere',
-        'Node.js',
-        'Swift',
-        'Pixel',
-        'Full stack',
-        'Scalable partnerships',
-        'Developer Relations',
-        'Haskell',
-        'Erlang',
-        'Cloud',
-        'Satisfaction Design',
-        'NoSQL',
-        'Kanban',
-        'Kotlin',
-        'Creative Code',
-        'Machine Learning',
-        'Data Visualisation',
-        'Big Data',
-        'Reactive Programming',
-        'Scala',
-        'Agile'
-      ]
+        var topics = [
+          'PHP',
+          'Whisky', // hi mark
+          'Java',
+          'Android',
+          'Keyboard',
+          'Computers',
+          'iOS',
+          'Ruby on Rails',
+          'SCRUM',
+          '$putHypeWordHere',
+          'Node.js',
+          'Swift',
+          'Pixel',
+          'Full stack',
+          'Scalable partnerships',
+          'Developer Relations',
+          'Haskell',
+          'Erlang',
+          'Cloud',
+          'Satisfaction Design',
+          'NoSQL',
+          'Kanban',
+          'Kotlin',
+          'Creative Code',
+          'Machine Learning',
+          'Data Visualisation',
+          'Big Data',
+          'Reactive Programming',
+          'Scala',
+          'Agile'
+        ]
 
-      if (Math.random() > 0.5) {
-        title.innerText = randomWord(skillLevels) + " " + randomWord(selfCompliments) + " of " + randomWord(topics);
-      } else {
-        title.innerText = randomWord(skillLevels) + " " + randomWord(topics) + " " + randomWord(selfCompliments);
-      }
+        if (Math.random() > 0.5) {
+          title.innerText = randomWord(skillLevels) + " " + randomWord(selfCompliments) + " of " + randomWord(topics);
+        } else {
+          title.innerText = randomWord(skillLevels) + " " + randomWord(topics) + " " + randomWord(selfCompliments);
+        }
 
-      function randomWord(words) {
-        var randomIndex = Math.floor(Math.random()*words.length); // from SO, so don't complain if it goes in SO :trollface:
-        return words[randomIndex];
-      }
+        function randomWord(words) {
+          var randomIndex = Math.floor(Math.random()*words.length); // from SO, so don't complain if it goes in SO :trollface:
+          return words[randomIndex];
+        }
+
+      })(document);
+
+      (function(fetch, document) {
+        fetch('https://api.github.com/repos/fourlastor/job-title-generator/stats/contributors').then(function(res) {
+          return res.json();
+        }).then(function(json) {
+          updateContributorsCount(json.length - 1);
+        });
+
+        function updateContributorsCount(count) {
+          document.querySelector('#contributors-count').innerText = count;
+        }
+      })(fetch, document);
     </script>
   </body>
 </html>
