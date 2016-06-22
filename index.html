@@ -18,18 +18,13 @@
         color: #eee;
         background-color: #000;
         font-family: 'Space Mono', monospace;
-        padding: 20px;
+        padding: 1.3em;
         margin: 0;
+        font-size: 14px;
+        flex-direction: column;
       }
 
-      .job-title {
-        font-size: 90px;
-      }
-
-      .badge {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
+      .contributors {
         color: #fff;
         font-size: 20px;
       }
@@ -37,13 +32,33 @@
       .red {
         color: #d44;
       }
+
+      .job-title {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+
+      @media (max-width: 720px) {
+        .job-title {
+          font-size: 45px;
+        }
+      }
+
+      @media (min-width: 721px) {
+        .job-title {
+          font-size: 90px;
+        }
+      }
     </style>
   </head>
   <body>
-    <a href="https://github.com/fourlastor/job-title-generator" class="badge">
+    <div id="job-title" class="job-title"></div>
+
+    <a href="https://github.com/fourlastor/job-title-generator" class="contributors">
       Made with <span class="red">&hearts;</span> by fourlastor and <span id="contributors-count">some</span> awesome people.
     </a>
-    <div id="job-title" class="job-title" />
 
 
     <script type="text/javascript">
