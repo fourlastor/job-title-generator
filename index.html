@@ -45,6 +45,16 @@
     <script type="text/javascript">
       var title = document.querySelector('#job-title');
 
+      var skillLevels = [
+        'Junior',
+        'Señor',
+        'Exausted',
+        'Uber-Experienced',
+        'Top',
+        'Superior',
+        'Confident'
+      ]
+
       var selfCompliments = [
         'Expert',
         'Gran Master',
@@ -70,7 +80,6 @@
         'Craftsperson',
         'Champion',
         'Evangelist',
-        'Mentor',
         'Advocate',
         'Pusher',
         'Sherpa',
@@ -111,13 +120,17 @@
         'Kotlin',
         'Creative Code',
         'Machine Learning',
-        'Data Visualisation'
+        'Data Visualisation',
+        'Big Data',
+        'Reactive Programming',
+        'Scala',
+        'Agile'
       ]
 
       if (Math.random() > 0.5) {
-        title.innerText = randomWord(selfCompliments) + " of " + randomWord(topics);
+        title.innerText = randomWord(skillLevels) + " " + randomWord(selfCompliments) + " of " + randomWord(topics);
       } else {
-        title.innerText = randomWord(topics) + " " + randomWord(selfCompliments);
+        title.innerText = randomWord(skillLevels) + " " + randomWord(topics) + " " + randomWord(selfCompliments);
       }
 
       function randomWord(words) {
