@@ -5,6 +5,7 @@
     <title>Job Title Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style media="screen">
       html {
         height: 100%;
@@ -40,6 +41,29 @@
         text-align: center;
       }
 
+      .retry {
+        font-size: 3em;
+        color: #000;
+        background-color: #fff;
+        border-radius: 50px;
+        margin-bottom: 1.7em;
+        cursor: pointer;
+      }
+
+      .spinning {
+        animation-name: spin;
+        animation-duration: 700ms;
+        animation-iteration-count: 1;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg)
+        } to {
+          transform: rotate(180deg)
+        }
+      }
+
       @media (max-width: 720px) {
         .job-title {
           font-size: 45px;
@@ -56,14 +80,15 @@
   <body>
     <div id="job-title" class="job-title"></div>
 
+    <i class="material-icons retry" id="retry">cached</i>
+
     <a href="https://github.com/fourlastor/job-title-generator" class="contributors">
       Made with <span class="red">&hearts;</span> by fourlastor and <span id="contributors-count">some</span> awesome people.
     </a>
 
-
     <script type="text/javascript">
-      (function (document) {
-        var title = document.querySelector('#job-title');
+      (function ($) {
+        var title = $.getElementById('job-title');
 
         var skillLevels = [
           'Junior',
@@ -147,10 +172,12 @@
           'Agile'
         ]
 
-        if (Math.random() > 0.5) {
-          title.innerText = randomWord(skillLevels) + " " + randomWord(selfCompliments) + " of " + randomWord(topics);
-        } else {
-          title.innerText = randomWord(skillLevels) + " " + randomWord(topics) + " " + randomWord(selfCompliments);
+        function updateJobTitle() {
+          if (Math.random() > 0.5) {
+            title.innerText = randomWord(skillLevels) + " " + randomWord(selfCompliments) + " of " + randomWord(topics);
+          } else {
+            title.innerText = randomWord(skillLevels) + " " + randomWord(topics) + " " + randomWord(selfCompliments);
+          }
         }
 
         function randomWord(words) {
@@ -158,9 +185,25 @@
           return words[randomIndex];
         }
 
+        var retry = $.getElementById('retry');
+        retry.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          retry.classList.remove('spinning');
+          retry.offsetWidth = retry.offsetWidth;
+          retry.classList.add('spinning');
+
+          updateJobTitle();
+        });
+
+        updateJobTitle();
+
       })(document);
 
-      (function(fetch, document) {
+      (function ($) {
+      })(document);
+
+      (function(fetch, $) {
         fetch('https://api.github.com/repos/fourlastor/job-title-generator/stats/contributors').then(function(res) {
           return res.json();
         }).then(function(json) {
@@ -168,7 +211,7 @@
         });
 
         function updateContributorsCount(count) {
-          document.querySelector('#contributors-count').innerText = count;
+          $.getElementById('contributors-count').innerText = count;
         }
       })(fetch, document);
     </script>
