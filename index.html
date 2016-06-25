@@ -41,12 +41,17 @@
         text-align: center;
       }
 
+      .retry-container {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1.7em;
+      }
+
       .retry {
         font-size: 3em;
         color: #000;
         background-color: #fff;
         border-radius: 50px;
-        margin-bottom: 1.7em;
         cursor: pointer;
       }
 
@@ -68,6 +73,10 @@
         .job-title {
           font-size: 45px;
         }
+
+        .retry-hint {
+          display: none;
+        }
       }
 
       @media (min-width: 721px) {
@@ -80,7 +89,10 @@
   <body>
     <div id="job-title" class="job-title"></div>
 
-    <i class="material-icons retry" id="retry">cached</i>
+    <div class="retry-container">
+      <i class="material-icons retry" id="retry">cached</i>
+      <p class="retry-hint">or press esc to retry</p>
+    </div>
 
     <a href="https://github.com/fourlastor/job-title-generator" class="contributors">
       Made with <span class="red">&hearts;</span> by fourlastor and <span id="contributors-count">some</span> awesome people.
@@ -185,22 +197,33 @@
           return words[randomIndex];
         }
 
-        var retry = $.getElementById('retry');
-        retry.addEventListener('click', function(e) {
+        var retryButton = $.getElementById('retry');
+        retryButton.addEventListener('click', function(e) {
           e.preventDefault();
 
-          retry.classList.remove('spinning');
-          retry.offsetWidth = retry.offsetWidth;
-          retry.classList.add('spinning');
+          retry();
+        });
+
+        $.addEventListener('keyup', function(e) {
+          e.preventDefault();
+
+          if (e.key !== 'Escape') {
+            return;
+          }
+
+          retry();
+        });
+
+        function retry() {
+          retryButton.classList.remove('spinning');
+          retryButton.offsetWidth = retryButton.offsetWidth;
+          retryButton.classList.add('spinning');
 
           updateJobTitle();
-        });
+        }
 
         updateJobTitle();
 
-      })(document);
-
-      (function ($) {
       })(document);
 
       (function(fetch, $) {
