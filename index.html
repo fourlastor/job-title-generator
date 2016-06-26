@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style media="screen">
       html {
         height: 100%;
@@ -49,10 +48,6 @@
       }
 
       .retry {
-        font-size: 3em;
-        color: #000;
-        background-color: #fff;
-        border-radius: 50px;
         cursor: pointer;
       }
 
@@ -91,7 +86,10 @@
     <div id="job-title" class="job-title"></div>
 
     <div class="retry-container">
-      <i class="material-icons retry" id="retry">cached</i>
+      <svg id="retry" class="retry" fill="#FFFFFF" height="48" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/>
+          <path d="M0 0h24v24H0z" fill="none"/>
+      </svg>
       <p class="retry-hint">or press esc to retry</p>
     </div>
 
@@ -215,6 +213,9 @@
 
           retry();
         });
+        retryButton.addEventListener('animationend', function() {
+          retryButton.classList.remove('spinning');
+        })
 
         $.addEventListener('keyup', function(e) {
           e.preventDefault();
@@ -227,8 +228,6 @@
         });
 
         function retry() {
-          retryButton.classList.remove('spinning');
-          retryButton.offsetWidth = retryButton.offsetWidth;
           retryButton.classList.add('spinning');
 
           updateJobTitle();
