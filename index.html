@@ -221,7 +221,8 @@
         $.addEventListener('keyup', function(e) {
           e.preventDefault();
 
-          if (e.key !== 'Escape') {
+          var ESCAPE_KEY_CODE = 27;
+          if (e.keyCode !== ESCAPE_KEY_CODE) {
             return;
           }
 
