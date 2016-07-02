@@ -1,0 +1,74 @@
+
+html {
+    height: 100%;
+}
+body {
+    box-sizing: border-box;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eee;
+    background-color: #000;
+    font-family: 'Space Mono', monospace;
+    padding: 1.3em;
+    margin: 0;
+    font-size: 14px;
+    flex-direction: column;
+}
+
+.contributors {
+    color: #fff;
+    font-size: 20px;
+}
+
+.red {
+    color: #d44;
+}
+
+.job-title {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.retry-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.7em;
+}
+
+.retry {
+    cursor: pointer;
+}
+
+.spinning {
+    animation-name: spin;
+    animation-duration: 700ms;
+    animation-iteration-count: 1;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg)
+    } to {
+          transform: rotate(-180deg)
+      }
+}
+
+@media (max-width: 720px) {
+    .job-title {
+        font-size: 45px;
+    }
+
+    .retry-hint {
+        display: none;
+    }
+}
+
+@media (min-width: 721px) {
+    .job-title {
+        font-size: 90px;
+    }
+}
