@@ -1,8 +1,8 @@
-let fetch = require('exports-loader?self.fetch!whatwg-fetch');
-let d3 = require('d3');
+const fetch = require('exports-loader?self.fetch!whatwg-fetch');
+const d3 = require('d3');
 require('./style.css');
 
-var skillLevels = [
+const skillLevels = [
     'Junior',
     'Señor',
     'Exhausted',
@@ -12,7 +12,7 @@ var skillLevels = [
     'Confident'
 ];
 
-var selfCompliments = [
+const selfCompliments = [
     'Expert',
     'Grand Master',
     'Master',
@@ -51,7 +51,7 @@ var selfCompliments = [
     'Mentor'
 ];
 
-var topics = [
+const topics = [
     'PHP',
     'Whisky', // hi mark
     'Java',
@@ -85,7 +85,7 @@ var topics = [
 ];
 
 function updateJobTitle() {
-    var jobTitle = randomJobTitle();
+    const jobTitle = randomJobTitle();
 
     d3.select('#job-title')
         .transition()
@@ -97,31 +97,31 @@ function updateJobTitle() {
 
 function randomJobTitle() {
     if (Math.random() > 0.5) {
-        return randomWord(skillLevels) + " " + randomWord(selfCompliments) + " of " + randomWord(topics);
+        return `${randomWord(skillLevels)} ${randomWord(selfCompliments)} of ${randomWord(topics)}`;
     } else {
-        return randomWord(skillLevels) + " " + randomWord(topics) + " " + randomWord(selfCompliments);
+        return `${randomWord(skillLevels)} ${randomWord(topics)} ${randomWord(selfCompliments)}`;
     }
 }
 
 function randomWord(words) {
-    var randomIndex = Math.floor(Math.random() * words.length); // from SO, so don't complain if it goes in SO :trollface:
+    const randomIndex = Math.floor(Math.random() * words.length); // from SO, so don't complain if it goes in SO :trollface:
     return words[randomIndex];
 }
 
-var retryButton = document.getElementById('retry');
-retryButton.addEventListener('click', function (e) {
+const retryButton = document.getElementById('retry');
+retryButton.addEventListener('click', e =>   {
     e.preventDefault();
 
     retry();
 });
-retryButton.addEventListener('animationend', function () {
+retryButton.addEventListener('animationend', () => {
     retryButton.classList.remove('spinning');
 });
 
-document.addEventListener('keyup', function (e) {
+document.addEventListener('keyup', e => {
     e.preventDefault();
 
-    var ESCAPE_KEY_CODE = 27;
+    const ESCAPE_KEY_CODE = 27;
     if (e.keyCode !== ESCAPE_KEY_CODE) {
         return;
     }
@@ -138,9 +138,9 @@ function retry() {
 updateJobTitle();
 
 
-fetch('https://api.github.com/repos/fourlastor/job-title-generator/stats/contributors').then(function (res) {
+fetch('https://api.github.com/repos/fourlastor/job-title-generator/stats/contributors').then(res => {
     return res.json();
-}).then(function (json) {
+}).then(json => {
     updateContributorsCount(json.length - 1);
 });
 
