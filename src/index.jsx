@@ -1,6 +1,9 @@
-const fetch = require('exports-loader?self.fetch!whatwg-fetch');
 const d3 = require('d3');
 require('./style.css');
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {App} from './App.jsx'
 
 const skillLevels = [
     'Junior',
@@ -137,13 +140,7 @@ function retry() {
 
 updateJobTitle();
 
-
-fetch('https://api.github.com/repos/fourlastor/job-title-generator/stats/contributors').then(res => {
-    return res.json();
-}).then(json => {
-    updateContributorsCount(json.length - 1);
-});
-
-function updateContributorsCount(count) {
-    document.getElementById('contributors-count').innerText = count;
-}
+ReactDOM.render(
+    <App />,
+    document.getElementById('app')
+)

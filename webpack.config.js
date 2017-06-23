@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     cache: true,
     entry: {
-        app: "./src/app.js"
+        app: "./src/index.jsx"
     },
     output: {
         path: path.join(__dirname, "dist"),
@@ -14,11 +14,11 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015']
+                    presets: ['es2015', 'react']
                 }
             },
             {test: /\.css/, loader: 'style-loader!css-loader'}
