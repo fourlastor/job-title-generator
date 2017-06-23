@@ -1,4 +1,4 @@
-let fetch = require('imports?self=>{},es6p=es6-promise,Promise=>es6p.Promise!exports?self.fetch!whatwg-fetch');
+let fetch = require('exports-loader?self.fetch!whatwg-fetch');
 let d3 = require('d3');
 require('./style.css');
 
