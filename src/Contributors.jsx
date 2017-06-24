@@ -12,10 +12,7 @@ export class Contributors extends Component {
     render() {
         return (
             <a href="https://github.com/fourlastor/job-title-generator" className="contributors">
-             Made with <span className="red">&hearts;</span>
-             by fourlastor and
-             <span id="contributors-count">{this.state.contributorsCount}</span>
-             awesome people.
+            Made with <span className="red">&hearts;</span> by fourlastor and <span id="contributors-count">{this.state.contributorsCount}</span> awesome people.
             </a>
         )
     }
