@@ -2,18 +2,20 @@
   "name": "job-title-generator",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --open --content-base src/",
+    "start": "webpack-dev-server --content-base src/",
     "build": "webpack -p"
   },
   "dependencies": {
     "d3": "^4.1.0",
     "react": "^15.6.1",
+    "react-css-transition-replace": "^2.2.1",
     "react-dom": "^15.6.1",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
     "babel-loader": "^7.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",

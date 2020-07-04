@@ -4,7 +4,7 @@ require('./style.css');
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {App} from './App.jsx'
-import {skillLevels,selfCompliments,topics} from './data.js'
+import {randomJobTitle} from './data.js'
 
 function updateJobTitle() {
     const jobTitle = randomJobTitle();
@@ -17,45 +17,32 @@ function updateJobTitle() {
         .text(jobTitle);
 }
 
-function randomJobTitle() {
-    if (Math.random() > 0.5) {
-        return `${randomWord(skillLevels)} ${randomWord(selfCompliments)} of ${randomWord(topics)}`;
-    } else {
-        return `${randomWord(skillLevels)} ${randomWord(topics)} ${randomWord(selfCompliments)}`;
-    }
-}
+// const retryButton = document.getElementById('retry');
+// retryButton.addEventListener('click', e =>   {
+//     e.preventDefault();
 
-function randomWord(words) {
-    const randomIndex = Math.floor(Math.random() * words.length); // from SO, so don't complain if it goes in SO :trollface:
-    return words[randomIndex];
-}
+//     retry();
+// });
+// retryButton.addEventListener('animationend', () => {
+//     retryButton.classList.remove('spinning');
+// });
 
-const retryButton = document.getElementById('retry');
-retryButton.addEventListener('click', e =>   {
-    e.preventDefault();
+// document.addEventListener('keyup', e => {
+//     e.preventDefault();
 
-    retry();
-});
-retryButton.addEventListener('animationend', () => {
-    retryButton.classList.remove('spinning');
-});
+//     const ESCAPE_KEY_CODE = 27;
+//     if (e.keyCode !== ESCAPE_KEY_CODE) {
+//         return;
+//     }
 
-document.addEventListener('keyup', e => {
-    e.preventDefault();
+//     retry();
+// });
 
-    const ESCAPE_KEY_CODE = 27;
-    if (e.keyCode !== ESCAPE_KEY_CODE) {
-        return;
-    }
+// function retry() {
+//     retryButton.classList.add('spinning');
 
-    retry();
-});
-
-function retry() {
-    retryButton.classList.add('spinning');
-
-    updateJobTitle();
-}
+//     updateJobTitle();
+// }
 
 updateJobTitle();
 

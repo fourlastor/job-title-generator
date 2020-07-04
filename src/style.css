@@ -17,6 +17,13 @@ body {
     flex-direction: column;
 }
 
+/* divs required by react, won't be required with react 16.x */
+#app, #app > div, #app > div > div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .contributors {
     color: #fff;
     font-size: 20px;
@@ -31,6 +38,11 @@ body {
     display: flex;
     align-items: center;
     text-align: center;
+}
+
+.job-title > span {
+    flex-grow: 1;
+    display: flex;
 }
 
 .retry-container {

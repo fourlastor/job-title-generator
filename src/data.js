@@ -1,4 +1,4 @@
-export const skillLevels = [
+const skillLevels = [
     'Junior',
     'Señor',
     'Exhausted',
@@ -8,7 +8,7 @@ export const skillLevels = [
     'Confident'
 ];
 
-export const selfCompliments = [
+const selfCompliments = [
     'Expert',
     'Grand Master',
     'Master',
@@ -47,7 +47,7 @@ export const selfCompliments = [
     'Mentor'
 ];
 
-export const topics = [
+const topics = [
     'PHP',
     'Whisky', // hi mark
     'Java',
@@ -79,3 +79,16 @@ export const topics = [
     'Scala',
     'Agile'
 ];
+
+export const randomJobTitle = () => {
+    if (Math.random() > 0.5) {
+        return `${randomWord(skillLevels)} ${randomWord(selfCompliments)} of ${randomWord(topics)}`;
+    } else {
+        return `${randomWord(skillLevels)} ${randomWord(topics)} ${randomWord(selfCompliments)}`;
+    }
+}
+
+const randomWord = (words) => {
+    const randomIndex = Math.floor(Math.random() * words.length); // from SO, so don't complain if it goes in SO :trollface:
+    return words[randomIndex];
+}
